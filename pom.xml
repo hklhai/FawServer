@@ -8,8 +8,8 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>MarketAnalysis Server</name>
-    <description>MarketAnalysis Server</description>
+    <name>Faw Server</name>
+    <description>Faw Server</description>
 
     <organization>
         <name>HXQH Corporation</name>
@@ -41,6 +41,17 @@
             <layout>default</layout>
             <snapshots>
                 <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>Nexus</id>
+            <name>Nexus Repository</name>
+            <url>http://abbNexus.com:8081/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
             </snapshots>
         </repository>
     </repositories>
@@ -96,6 +107,12 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ojdbc7</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>12.1.0.2</version>
         </dependency>
     </dependencies>
 

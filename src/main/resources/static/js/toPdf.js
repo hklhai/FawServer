@@ -56,7 +56,7 @@ $("#renderPdf").on("click",function(){
     });
 });
 //打印的demo
-// $("#renderPdf").on("click",function(){
+// $("#renderPdf").on("click.html",function(){
 //     window.frames[0].location = "https://www.runoob.com/";
 //     var newstr = document.getElementById("dataShow").innerHTML;
 //
