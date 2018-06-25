@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8"/>
     <!-- 引入 ECharts 文件 -->
-    <script src="static/scripts/echarts.common.min.js"></script>
-    <script src="static/scripts/jquery-3.2.1.min.js"></script>
+    <script src="../../static/scripts/echarts.common.min.js"></script>
+    <script src="../../static/scripts/jquery-3.2.1.min.js"></script>
     <title>Index Page</title>
     <style>
         h3{
@@ -13,21 +13,21 @@
             font-size: 30px;
             height: 50px;
             line-height: 50px;
-            /*background: #0A0F25;*/
+            background: #0A0F25;
             margin-top: 10px;
             margin-bottom: 10px;
         }
         .echartDiv{
-            width: 90%;
+            width: 100%;
             min-width: 960px;
             margin: 0 auto;
-            /*background: #0A0F25;*/
+            background: #0A0F25;
         }
         #pie1,#pie2,#pie3,#pie4{
             width: 50%;
             height: 400px;
             float: left;
-            margin-top:40px;
+            padding-top:40px;
         }
     </style>
 </head>
@@ -100,22 +100,26 @@
             var myChart = echarts.init(document.getElementById(domIdName));
             // 指定图表的配置项和数据
             var option = {
-//                backgroundColor: "#0A0F25",
+                backgroundColor: "#0A0F25",
                 title: {
                     text: pieName,
-                    x: 'center'
+                    x: 'center',
+                    color: '#fff'
                 },
                 legend: {
                     orient: 'vertical',
                     type: 'scroll',
                     left: 'right',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 series: [
                     {
                         name: '访问来源',
                         type: 'pie',
-                        radius: '40%',
-                        center: ['40%', '40%'],
+                        radius: '35%',
+                        center: ['40%', '50%'],
                         data: echartData,
                         itemStyle: {
                             emphasis: {
@@ -129,12 +133,9 @@
             };
             // 使用刚指定的配置项和数据显示图表。
             myChart.setOption(option);
-            if(domIdName=="pie1"){
-                myChart.on('click', function (param) {
-                    localStorage.setItem("demo_param",param.data.name)
-                    window.location.href=basic_url+"/click";
-                });
-            }
+            myChart.on('click', function (param) {
+                console.log(param.data.name);
+            });
         }
         function getRootPath_web(){
             var curWwwPath = window.document.location.href;

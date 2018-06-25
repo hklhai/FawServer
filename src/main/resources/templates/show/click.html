@@ -2,9 +2,129 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Click Page</title>
+    <!-- 引入 ECharts 文件 -->
+    <script src="static/scripts/echarts.common.min.js"></script>
+    <script src="static/scripts/jquery-3.2.1.min.js"></script>
+    <title>Index Page</title>
+    <style>
+        h3{
+            text-align: center;
+            color: #000;
+            font-size: 30px;
+            height: 50px;
+            line-height: 50px;
+            /*background: #0A0F25;*/
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .echartDiv{
+            width: 90%;
+            min-width: 960px;
+            margin: 0 auto;
+            /*background: #0A0F25;*/
+        }
+        #pie{
+            width: 100%;
+            height: 500px;
+            margin-top:40px;
+        }
+        .returnBtn{
+            width: 100px;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            background: #334B5C;
+            color: #fff;
+            letter-spacing: 4px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    click page
+<h3>工作汇报展示图</h3>
+<button class="returnBtn">返回</button>
+<div class="echartDiv">
+    <div id="pie"></div>
+</div>
+
 </body>
+<script type="text/javascript">
+    $(function () {
+        $(".returnBtn").on("click",function(){
+            window.location.href=basic_url+"/";
+        });
+
+        var param = localStorage.getItem("demo_param");
+        var basic_url = getRootPath_web();
+        var echartData = [];
+        $.ajax({
+            type: "post",
+            url: basic_url+"/v1Click",
+            dataType: "json",
+            data: {
+              "projectname":  param
+            },
+            success: function (data) {
+                var i = 0;
+                var len = data.length;
+                /* <![CDATA[ */
+                for (; i < len; i++) {
+                    var tmpObj = {};
+                    tmpObj.value = data[i].sumhours;
+                    tmpObj.name = data[i].cudept;
+                    echartData.push(tmpObj);
+                }
+                /* ]]> */
+                console.log(echartData);
+                pieShow("pie", echartData, "");
+            }
+        });
+
+        function pieShow(domIdName, echartData, pieName) {
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById(domIdName));
+            // 指定图表的配置项和数据
+            var option = {
+//                backgroundColor: "#0A0F25",
+                title: {
+                    text: pieName,
+                    x: 'center'
+                },
+                legend: {
+                    orient: 'vertical',
+                    type: 'scroll',
+                    left: 'right',
+                },
+                series: [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        radius: '50%',
+                        center: ['50%', '40%'],
+                        data: echartData,
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+        function getRootPath_web(){
+            var curWwwPath = window.document.location.href;
+            var pathName = window.document.location.pathname;
+            var pos = curWwwPath.indexOf(pathName);
+            var localhostPaht = curWwwPath.substring(0, pos);
+            var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+            return (localhostPaht + projectName);
+        }
+    });
+</script>
 </html>
