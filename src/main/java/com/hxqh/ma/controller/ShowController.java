@@ -67,9 +67,10 @@ public class ShowController {
      *
      * @return
      */
-    @RequestMapping(value = "/v1Click", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1Click", method = RequestMethod.POST)
     @ResponseBody
     public List<V1Click> v1Click(@RequestParam(value = "projectname") String projectname) {
+        System.out.println(projectname);
         return v1ClickRepository.findByProjectname(projectname);
     }
 
