@@ -29,14 +29,14 @@ public class V1AndV2Test {
     private V2Repository v2Repository;
 
 
-    @Test
+//    @Test
     public void findAllV1() {
         List<V1> v1RepositoryList = v1Repository.findAll();
         Assert.assertTrue(v1RepositoryList.size() > 0);
 
     }
 
-    @Test
+//    @Test
     public void findAllV2() {
         List<V2> v2RepositoryList = v2Repository.findAll();
         Assert.assertTrue(v2RepositoryList.size() > 0);
