@@ -18,8 +18,8 @@ import java.util.List;
  *
  * @author Ocean lin
  */
-@SpringBootTest
-@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringBootTest
+//@RunWith(SpringJUnit4ClassRunner.class)
 public class V1AndV2Test {
 
     @Resource
