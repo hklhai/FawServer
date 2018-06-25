@@ -64,13 +64,15 @@ public class ShowController {
 
     /**
      * v1Click 数据接口
+     * <p>
+     * http://101.201.79.54:8999/FawServer/v1Click
+     * body projectname:J6系列
      *
      * @return
      */
     @RequestMapping(value = "/v1Click", method = RequestMethod.POST)
     @ResponseBody
     public List<V1Click> v1Click(@RequestParam(value = "projectname") String projectname) {
-        System.out.println(projectname);
         return v1ClickRepository.findByProjectname(projectname);
     }
 
