@@ -1,23 +1,25 @@
 package com.hxqh.ma.model;
 
+/**
+ * Created by Ocean lin on 2018/6/22.
+ *
+ * @author Ocean lin
+ */
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * Created by Ocean lin on 2018/6/22.
- *
- * @author Lin
- */
 @Entity
-@Table(name = "V1")
-public class V1 {
+@Table(name = "V1_CLICK")
+public class V1Click {
     @Id
     private Integer rn;
     private String projectname;
+    private String cudept;
     private Double sumhours;
 
-    public V1() {
+    public V1Click() {
     }
 
     public Integer getRn() {
@@ -34,6 +36,14 @@ public class V1 {
 
     public void setProjectname(String projectname) {
         this.projectname = projectname;
+    }
+
+    public String getCudept() {
+        return cudept;
+    }
+
+    public void setCudept(String cudept) {
+        this.cudept = cudept;
     }
 
     public Double getSumhours() {

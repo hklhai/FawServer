@@ -6,6 +6,8 @@ import javax.persistence.Table;
 
 /**
  * Created by Ocean lin on 2018/6/22.
+ *
+ * @author Lin
  */
 @Entity
 @Table(name = "V2")
