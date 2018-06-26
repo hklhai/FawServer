@@ -109,6 +109,7 @@
                     trigger: 'item',
                     formatter: "{b} :<br/> {c} ({d}%)"
                 },
+
                 legend: {
                     orient: 'vertical',
                     type: 'scroll',
@@ -118,8 +119,13 @@
                     {
                         name: '访问来源',
                         type: 'pie',
-                        radius: '40%',
+                        radius: '30%',
                         center: ['40%', '40%'],
+                        label:{
+                            normal:{
+                                formatter: "{b} , {d}%"
+                            }
+                        },
                         data: echartData,
                         itemStyle: {
                             emphasis: {
